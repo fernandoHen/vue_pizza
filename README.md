@@ -1,4 +1,4 @@
-# vue_pizza
+# Projeto Pedido de Pizza Top
 
 ## Project setup
 ```
@@ -15,5 +15,15 @@ npm run serve
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Observações Gerais
+Necessário rodar os seguintes comandos no terminal dentro da pasta para criae o Banco de Dados (BD).
+```
+npm install json-serve
+```
+Após instalar o json-serve deve-se rodar simultâniamente o projeto vue e o BD criado.
+Comando para rodar o BD:
+```
+npm run backend
+```
+
+
