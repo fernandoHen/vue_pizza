@@ -1,9 +1,5 @@
 <template>
   <div>
-    <h2>SOBRE</h2>
+    <h2>PEDIDOS</h2>
   </div>
 </template>
-
-<script>
-
-</script>
