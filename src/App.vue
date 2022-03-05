@@ -39,7 +39,8 @@ export default {
   background-color: rgb(114, 114, 114);  
   width: 100%;
   position: fixed;
-  height: 100%  ;
+  height: 100%;
+  display: inline-flex;
 }
 
 </style>
