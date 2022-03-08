@@ -3,7 +3,7 @@
       <Navbar :vueLogo="logo_src" :vueAlt="app_name" />
       <router-view/> <!--a view é mostrada nesse momento-->
     </div>
-  <Footer />
+    <Footer />
 </template>
 
 <script>
@@ -26,8 +26,6 @@ export default {
 }
 </script>
 
-
-
 <style>
   *{
     font-family: Helvetica;
@@ -46,10 +44,12 @@ export default {
   }
 
   .main-container {
-    margin: 50px;
+    margin: 0px 0px 0px px;
     min-height: 250px;
     width: 100%;
     background-color: grey;
+    overflow-y: auto;
+    min-width: 20px;
   }
 
   .main-container h2 {

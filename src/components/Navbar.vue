@@ -31,7 +31,7 @@ export default {
         border-right: 2px solid;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         font-size: 20px;
-        width: 150px;
+        width: 200px;
         align-content: center;
         height: 100%;
     }
