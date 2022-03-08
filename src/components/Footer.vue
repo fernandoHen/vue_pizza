@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <p>Footer</p>
+        <p>Faça sua Pizza Top &copy; 2021</p>
     </footer>
 </template>
 
@@ -20,6 +20,13 @@ export default {
         background-color: rgb(114, 114, 114);  
         width: 100%;
         height: 50px;
-        border-top: 3px solid;
+        border-top: 2px solid;
+    }
+
+    footer p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px;
     }
 </style>

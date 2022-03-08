@@ -29,18 +29,34 @@ export default {
 
 
 <style>
-*{
+  *{
+    font-family: Helvetica;
     margin:0;
     padding:0;
     border:0;
-}
+    box-sizing: border-box; /*div nao passa da argura maxima da div pai*/
+  }
 
-.position-nav {
-  background-color: rgb(114, 114, 114);  
-  width: 100%;
-  position: fixed;
-  height: 100%;
-  display: inline-flex;
-}
+  .position-nav {
+    background-color: rgb(114, 114, 114);  
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    display: inline-flex;
+  }
+
+  .main-container {
+    margin: 50px;
+    min-height: 250px;
+    width: 100%;
+    background-color: grey;
+  }
+
+  .main-container h2 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 30px;
+    color: #222;
+  }
 
 </style>
