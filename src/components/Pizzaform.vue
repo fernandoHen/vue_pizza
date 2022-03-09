@@ -5,38 +5,30 @@
             <form id="pizza-form">
                 <div class="input-container">
                     <label for="nameClient">Nome do Cliente:</label>
-                    <input type="text" id="name" name="name" v-model="name" placeholder="Digite o seu nome" />
+                    <input type="text" id="name" name="name" class="text" v-model="name" placeholder="Digite o seu nome" />
                 </div>
                 
                 <div class="input-container">
                     <label for="mass">Escolha a Massa</label>
-                    <select name="mass" id="mass" v-model="mass">
-                        <option value="">Selecione o tipo de massa</option>
-                        <option value="teste">teste</option>
+                    <select name="mass" id="mass" :v-model="mass">
+                        <option class="text" value="" disabled selected>Selecione o tipo de massa</option>
+                        <option class="text" v-for="massa in massas" :key="massa.id" :value="massa.tipo">{{massa.tipo}}</option>
                     </select>
                 </div>
 
                 <div class="input-container">
                     <label for="masedges">Escolha a Borda</label>
-                    <select name="edge" id="edge" v-model="edge">
-                        <option value="">Selecione recheio da borda</option>
-                        <option value="teste">borda</option>
+                    <select name="edge" id="edge" :v-model="edge" value="">
+                        <option class="text" value="" disabled selected>Selecione recheio da borda</option>
+                        <option class="text" v-for="borda in bordas" :key="borda.id" :value="borda.tipo">{{borda.tipo}}</option>
                     </select>
                 </div>
 
                 <div id="mass-container" class="input-container">
-                    <label for="mass">Escolha o sabor da Pizza</label>
-                    <div id="mass-title" class="checkbox-container">
-                        <input type="checkbox" name="mass" v-model="mass" value="frango">
-                        <span>Frango</span>
-                    </div>
-                    <div id="mass-title" class="checkbox-container">
-                        <input type="checkbox" name="mass" v-model="mass" value="frango">
-                        <span>Frango</span>
-                    </div>
-                    <div id="mass-title" class="checkbox-container">
-                        <input type="checkbox" name="mass" v-model="mass" value="frango">
-                        <span>Frango</span>
+                    <label for="sabor">Escolha o sabor da Pizza</label>
+                    <div id="sabor-title" class="checkbox-container" v-for="saborData in saboresData" :key="saborData.id">
+                        <input type="checkbox" name="sabor" v-model="saboresData" :value="saborData.tipo">
+                        <span>{{saborData.tipo}}</span>
                     </div>
                 </div>
 
@@ -53,6 +45,45 @@
 <script>
 export default {
     name: "PizzaForm",
+    //relacionamento com o banco de dados   
+    data() {
+        return {
+//OBS: ESTA SENDO FEITO DESSA MANEIRA E NAO NO BACKEND, PELO FATO DE NAO TER UM
+//BACKEND FEITO (AINDA NAO TEM)
+
+            //dados que vem do servidor - inicio
+            massas: null,
+            bordas: null,
+            saboresData: null,
+            // dados que vem para preencher o form - fim
+
+            //dados que vao ser enviados ao bd - inicio
+            name: null,
+            massa: null,
+            borda: null,
+            saborData: [],
+            status: "Solicitado",
+            msg: null
+            //dados que vao ser enviados ao bd - fim
+        }
+    },
+    methods: {
+        //trabalha com o backend para trazer os ingredientes
+        async getIngredientes() {
+            //crio a chamada do backend, nesse caso url que da acesso a api
+            const reqBackend = await fetch("http://localhost:8083/ingredientes");
+            const data = await reqBackend.json(); // espera a requisicao para ter os dados em json
+
+            this.massas = data.massas;
+            this.bordas = data.bordas;
+            this.saboresData = data.sabores;
+
+        }
+    },
+    //quando montar o componente 
+    mounted() {
+        this.getIngredientes();
+    }
 }
 </script>
 
@@ -119,6 +150,11 @@ export default {
 
     .submit-btn:hover{
         opacity: 0.8;
+    }
+
+    .text {
+        font-family: Helvetica;
+        font-size: 18px;
     }
 
 </style>
