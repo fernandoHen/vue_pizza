@@ -2,32 +2,32 @@
     <div>
         <p>Componente de mensagem</p>
         <div>
-            <form id="pizza-form">
+            <form id="pizza-form" @submit="createPizza">
                 <div class="input-container">
                     <label for="nameClient">Nome do Cliente:</label>
-                    <input type="text" id="name" name="name" class="text" v-model="name" placeholder="Digite o seu nome" />
+                    <input type="text" id="name" name="name_id" class="text" v-model="name" placeholder="Digite o seu nome" />
                 </div>
                 
                 <div class="input-container">
-                    <label for="mass">Escolha a Massa</label>
-                    <select name="mass" id="mass" :v-model="mass">
+                    <label for="massa">Escolha a Massa</label>
+                    <select name="massa" id="massa_id" v-model="massa">
                         <option class="text" value="" disabled selected>Selecione o tipo de massa</option>
                         <option class="text" v-for="massa in massas" :key="massa.id" :value="massa.tipo">{{massa.tipo}}</option>
                     </select>
                 </div>
 
                 <div class="input-container">
-                    <label for="masedges">Escolha a Borda</label>
-                    <select name="edge" id="edge" :v-model="edge" value="">
+                    <label for="borda">Escolha a Borda</label>
+                    <select name="borda" id="borda_id" v-model="borda" value="">
                         <option class="text" value="" disabled selected>Selecione recheio da borda</option>
                         <option class="text" v-for="borda in bordas" :key="borda.id" :value="borda.tipo">{{borda.tipo}}</option>
                     </select>
                 </div>
 
                 <div id="mass-container" class="input-container">
-                    <label for="sabor">Escolha o sabor da Pizza</label>
+                    <label for="sabores">Escolha o sabor da Pizza</label>
                     <div id="sabor-title" class="checkbox-container" v-for="saborData in saboresData" :key="saborData.id">
-                        <input type="checkbox" name="sabor" v-model="saboresData" :value="saborData.tipo">
+                        <input type="checkbox" name="sabores_name" v-model="sabores" :value="saborData.tipo">
                         <span>{{saborData.tipo}}</span>
                     </div>
                 </div>
@@ -61,14 +61,14 @@ export default {
             name: null,
             massa: null,
             borda: null,
-            saborData: [],
-            status: "Solicitado",
+            sabores: [],
             msg: null
             //dados que vao ser enviados ao bd - fim
         }
     },
     methods: {
-        //trabalha com o backend para trazer os ingredientes
+        //trabalha com o backend para trazer os ingredientes - metodo para pegar ingredientes
+
         async getIngredientes() {
             //crio a chamada do backend, nesse caso url que da acesso a api
             const reqBackend = await fetch("http://localhost:8083/ingredientes");
@@ -78,11 +78,48 @@ export default {
             this.bordas = data.bordas;
             this.saboresData = data.sabores;
 
+        },
+
+        //metodo para enviar os dados do formulario para o backend em post
+        //e -> argumente de evento, isso para parar o evento do formulario quando clicar
+        //no submit
+        async createPizza(e) {
+            e.preventDefault();
+            //cria um objeto com os dados que foram preenchidos
+            const data = {
+                name: this.name,
+                massa: this.massa,
+                borda: this.borda,
+                sabores: Array.from(this.sabores),
+                status: "Solicitado"
+            }   
+
+            //comunicacao via request para o servidor
+            const dataJson = JSON.stringify(data)//pega o objeto json e transforma em um texto
+            
+            //envio ima requisicao para a api de pizzas para integrar com o bd
+            const reqBackendAdd = await fetch("http://localhost:8083/pizzas", {
+                //parametros
+                method: "POST",
+                headers: {"Content-Type": "application/json"}, //digo que estou se comunicando com um json
+                body: dataJson //corpo da requisicao para enviae os dadosjson como texto
+            });
+
+            //resposta da requisicao
+            const resposta_reqBackendAdd = await reqBackendAdd.json();
+            console.log(resposta_reqBackendAdd);
+
+            //limpar os campos
+            this.name = "";
+            this.massa = "";
+            this.borda = "";
+            this.sabores = "";
+            
         }
     },
     //quando montar o componente 
     mounted() {
-        this.getIngredientes();
+        this.getIngredientes(); 
     }
 }
 </script>

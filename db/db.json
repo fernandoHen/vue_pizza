@@ -1,82 +1,93 @@
 {
-    "ingredientes": {
-      "massas": [
-        {
-          "id": 1,
-          "tipo": "Tradicional"
-        },
-        {
-          "id": 2,
-          "tipo": "Sem Glutem"
-        },
-        {
-          "id": 3,
-          "tipo": "Integral"
-        },
-        {
-          "id": 4,
-          "tipo": "Da casa"
-        }
-      ],
-      "sabores": [
-        {
-          "id": 1,
-          "tipo": "Frango"
-        },
-        {
-          "id": 2,
-          "tipo": "Calabresa"
-        },
-        {
-          "id": 3,
-          "tipo": "Vegeariana"
-        },
-        {
-          "id": 4,
-          "tipo": "Chocolhate"
-        }
-      ],
-      "bordas": [
-        {
-          "id": 1,
-          "tipo": "Catupiry"
-        },
-        {
-          "id": 2,
-          "tipo": "Cheddar"
-        },
-        {
-          "id": 3,
-          "tipo": "Chocolate"
-        },
-        {
-          "id": 4,
-          "tipo": "Creme de Limão"
-        },
-        {
-          "id": 5,
-          "tipo": "Doce de Leite"
-        },
-        {
-          "id": 6,
-          "tipo": "Prestígio"
-        }
-      ]
-    },
-    "status": [
+  "ingredientes": {
+    "massas": [
       {
         "id": 1,
-        "tipo": "Solicitado"
+        "tipo": "Tradicional"
       },
       {
         "id": 2,
-        "tipo": "Em produção"
+        "tipo": "Sem Glutem"
       },
       {
         "id": 3,
-        "tipo": "Finalizado"
+        "tipo": "Integral"
+      },
+      {
+        "id": 4,
+        "tipo": "Da casa"
       }
     ],
-    "pizzas":[]
-  }
-  
+    "sabores": [
+      {
+        "id": 1,
+        "tipo": "Frango"
+      },
+      {
+        "id": 2,
+        "tipo": "Calabresa"
+      },
+      {
+        "id": 3,
+        "tipo": "Vegeariana"
+      },
+      {
+        "id": 4,
+        "tipo": "Chocolhate"
+      }
+    ],
+    "bordas": [
+      {
+        "id": 1,
+        "tipo": "Catupiry"
+      },
+      {
+        "id": 2,
+        "tipo": "Cheddar"
+      },
+      {
+        "id": 3,
+        "tipo": "Chocolate"
+      },
+      {
+        "id": 4,
+        "tipo": "Creme de Limão"
+      },
+      {
+        "id": 5,
+        "tipo": "Doce de Leite"
+      },
+      {
+        "id": 6,
+        "tipo": "Prestígio"
+      }
+    ]
+  },
+  "status": [
+    {
+      "id": 1,
+      "tipo": "Solicitado"
+    },
+    {
+      "id": 2,
+      "tipo": "Em produção"
+    },
+    {
+      "id": 3,
+      "tipo": "Finalizado"
+    }
+  ],
+  "pizzas": [
+    {
+      "name": "Odair",
+      "massa": "Tradicional",
+      "borda": "Chocolate",
+      "sabores": [
+        "Frango",
+        "Calabresa"
+      ],
+      "status": "Solicitado",
+      "id": 1
+    }
+  ]
+}
