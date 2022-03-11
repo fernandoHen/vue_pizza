@@ -24,9 +24,12 @@
                     </ul>
                 </div>
 
-                <div>
+                <div class="action">
                     <select name="status" class="status">
                         <option value="">Status</option>
+                        <option v-for="st in status" :key="st.id" value="st.tipo" :selected="pizza.status == st.tipo">
+                            {{ st.tipo }}
+                        </option>
                     </select>
                     <button class="delete-btn">Cancelar</button>
                 </div>
@@ -56,7 +59,13 @@ export default {
             this.pizzas = data;
             
             //resgate do status   
-
+            this.getStatus();
+        },
+        async getStatus() {
+            const req_bd_status = await fetch("http://localhost:8083/status");
+            const data = await req_bd_status.json();
+            this.status = data;
+            console.log(data);
         }
     },
     mounted() {
@@ -76,6 +85,12 @@ export default {
     .pizza-table-row {
         display: flex;
         flex-wrap: wrap;
+    }
+
+    #order-pizza-table {
+        height: 80%;
+        background-color: #5694B9;
+        overflow: auto;
     }
 
     #pizza-table-heading {
@@ -103,7 +118,8 @@ export default {
     
     select {
         padding: 12px 6px;
-        margin-right: 12px; 
+        margin-right: 12px;
+        border-radius: 8px;
     }
 
     .delete-btn {
@@ -115,6 +131,7 @@ export default {
         font-size: 16px;
         margin: 0 auto;
         cursor: pointer;
+        border-radius: 8px;
     }
 
     .delete-btn:hover {
@@ -123,4 +140,10 @@ export default {
         color: #f9f2f4;
         font-weight: bold;
     }
+
+    .status {
+        text-align: center;
+        float: left;
+    }
+
 </style>
