@@ -1,4 +1,5 @@
 <template>
+    <Message :msg="msg" v-show="msg" />
     <div id="order-pizza-table">
         <div>
             <div id="pizza-table-heading">
@@ -31,7 +32,7 @@
                             {{ st.tipo }}
                         </option>
                     </select>
-                    <button class="delete-btn">Cancelar</button>
+                    <button class="delete-btn" @click="deletePizza(pizza.id)">Cancelar</button>
                 </div>
             </div>
         </div>
@@ -40,15 +41,21 @@
 </template>
 
 <script>
+import Message from "./Message.vue";
 
 export default {
+    
     name: "Dashboard",
     data() {
         return {
             pizzas: null,
             pizzas_id: null,
-            status: []
+            status: [],
+            msg: null
         }
+    },
+    components: {
+        Message
     },
     methods: {
         //pega os valores do bd
@@ -66,6 +73,18 @@ export default {
             const data = await req_bd_status.json();
             this.status = data;
             console.log(data);
+        },
+        async deletePizza(id) {
+            const req_bd_delete = await fetch(`http://localhost:8083/pizzas/${id}`, {
+                method: "DELETE"
+            });
+
+            const respostaDelete = req_bd_delete.json();
+            this.msg = "Pedido Cancelado com Sucesso!"
+
+            this.getPedidos(); // requisicao a menos no backend, nesse caso é aceitavel
+            setTimeout(() => this.msg = "", 5000);
+
         }
     },
     mounted() {
