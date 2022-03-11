@@ -115,7 +115,7 @@ export default {
             this.msg = `Pedido Número: ${resposta_reqBackendAdd.id} realizado com sucesso!`
 
             //limpar msg
-            setTimeout(() => this.msg = "", 5000);
+            setTimeout(() => this.msg = "", 4000);
 
             //limpar os campos
             this.name = "";

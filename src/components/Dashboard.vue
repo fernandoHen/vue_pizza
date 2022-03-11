@@ -26,9 +26,9 @@
                 </div>
 
                 <div class="action">
-                    <select name="status" class="status">
+                    <select name="status" class="status" @change="updetePizza($event, pizza.id)">
                         <option value="">Status</option>
-                        <option v-for="st in status" :key="st.id" value="st.tipo" :selected="pizza.status == st.tipo">
+                        <option v-for="st in status" :key="st.id" :value="st.tipo" :selected="pizza.status == st.tipo">
                             {{ st.tipo }}
                         </option>
                     </select>
@@ -85,6 +85,21 @@ export default {
             this.getPedidos(); // requisicao a menos no backend, nesse caso é aceitavel
             setTimeout(() => this.msg = "", 5000);
 
+        },
+        async updetePizza(event, id) {
+            //update leva o evento e o id da pizza a ser atualizada
+            const option = event.target.value;
+            const dataJson = JSON.stringify({ status: option }) // converte valores de js para uma String JSON.
+
+            //vai ate no bd_json, encontra o id e faz a alteracao do status
+            const requestUpdate = await fetch(`http://localhost:8083/pizzas/${id}`, {
+                method: "PATCH", //atualiza apenas o que foi enviado, o caso o status
+                headers: { "Content-Type": "application/json"},
+                body: dataJson
+            });
+
+            const respostaUpdate = requestUpdate.json();
+            console.log(respostaUpdate)
         }
     },
     mounted() {
