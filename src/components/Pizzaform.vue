@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Componente de mensagem</p>
+        <Message :msg="msg" v-show="msg" />
         <div>
             <form id="pizza-form" @submit="createPizza">
                 <div class="input-container">
@@ -43,6 +43,8 @@
 
 
 <script>
+import Message from "./Message.vue";
+
 export default {
     name: "PizzaForm",
     //relacionamento com o banco de dados   
@@ -109,6 +111,12 @@ export default {
             const resposta_reqBackendAdd = await reqBackendAdd.json();
             console.log(resposta_reqBackendAdd);
 
+            //adiciona msg do sistema
+            this.msg = `Pedido Número: ${resposta_reqBackendAdd.id} realizado com sucesso!`
+
+            //limpar msg
+            setTimeout(() => this.msg = "", 5000);
+
             //limpar os campos
             this.name = "";
             this.massa = "";
@@ -120,6 +128,9 @@ export default {
     //quando montar o componente 
     mounted() {
         this.getIngredientes(); 
+    },
+    components: {
+        Message
     }
 }
 </script>

@@ -77,17 +77,5 @@
       "tipo": "Finalizado"
     }
   ],
-  "pizzas": [
-    {
-      "name": "Odair",
-      "massa": "Tradicional",
-      "borda": "Chocolate",
-      "sabores": [
-        "Frango",
-        "Calabresa"
-      ],
-      "status": "Solicitado",
-      "id": 1
-    }
-  ]
+  "pizzas": []
 }
