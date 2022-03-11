@@ -20,7 +20,7 @@ export default {
 
 <style scoped>
     #logo {
-        height: 150px;
+        height: 120px;
         margin-left: auto;
         margin-right: auto;
         display: block;

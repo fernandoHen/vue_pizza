@@ -77,5 +77,38 @@
       "tipo": "Finalizado"
     }
   ],
-  "pizzas": []
+  "pizzas": [
+    {
+      "name": null,
+      "massa": null,
+      "borda": null,
+      "sabores": [],
+      "status": "Solicitado",
+      "id": 1
+    },
+    {
+      "name": null,
+      "massa": null,
+      "borda": null,
+      "sabores": [
+        "Frango",
+        "Chocolhate"
+      ],
+      "status": "Solicitado",
+      "id": 2
+    },
+    {
+      "name": null,
+      "massa": null,
+      "borda": null,
+      "sabores": [
+        "Frango",
+        "Chocolhate",
+        "Calabresa",
+        "Vegeariana"
+      ],
+      "status": "Solicitado",
+      "id": 3
+    }
+  ]
 }
