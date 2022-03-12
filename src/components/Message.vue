@@ -18,7 +18,7 @@ export default {
         border-radius: 5px;
         text-align: center;
         padding: 10px;/*espaço interno */
-        max-width: 400px;
+        max-width: 500px;
         margin: 30px auto;
 
         background: #dbead5;

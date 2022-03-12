@@ -79,14 +79,14 @@
   ],
   "pizzas": [
     {
-      "name": "teste",
-      "massa": "Sem Glutem",
-      "borda": "Doce de Leite",
+      "name": "Fernando",
+      "massa": "Tradicional",
+      "borda": "Catupiry",
       "sabores": [
-        "Vegeariana"
+        "Frango"
       ],
       "status": "Solicitado",
-      "id": 2
+      "id": 1
     }
   ]
 }

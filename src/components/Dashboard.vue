@@ -83,13 +83,13 @@ export default {
             this.msg = "Pedido Cancelado com Sucesso!"
 
             this.getPedidos(); // requisicao a menos no backend, nesse caso é aceitavel
-            setTimeout(() => this.msg = "", 5000);
+            setTimeout(() => this.msg = "", 4000);
 
         },
         async updetePizza(event, id) {
             //update leva o evento e o id da pizza a ser atualizada
             const option = event.target.value;
-            const dataJson = JSON.stringify({ status: option }) // converte valores de js para uma String JSON.
+            const dataJson = JSON.stringify({ status: option }); // converte valores de js para uma String JSON.
 
             //vai ate no bd_json, encontra o id e faz a alteracao do status
             const requestUpdate = await fetch(`http://localhost:8083/pizzas/${id}`, {
@@ -98,8 +98,12 @@ export default {
                 body: dataJson
             });
 
-            const respostaUpdate = requestUpdate.json();
+            const respostaUpdate = await requestUpdate.json();
             console.log(respostaUpdate)
+
+            this.msg = `O pedido numero: ${respostaUpdate.id} foi atualizado para: ${respostaUpdate.status}`;
+
+            setTimeout(() => this.msg = "", 4000);
         }
     },
     mounted() {
