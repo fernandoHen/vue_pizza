@@ -59,4 +59,10 @@ export default {
     color: #222;
   }
 
+  .main-container h4{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: #222;
+  }
 </style>
